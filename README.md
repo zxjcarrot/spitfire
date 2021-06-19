@@ -1,6 +1,6 @@
 # Spitfire: A Three-Tier Buffer Manager for Volatile and Non-Volatile Memory
 
-A multi-threaded buffer manager built for multi-tier storage hiearchy involving DRAM/NVM/SSD. Check out our [SIGMOD 2021 paper](https://zxjcarrot.github.io/publication/spitfire/spitfire.pdf) for more details.
+A multi-threaded buffer manager built for multi-tier storage hierarchy involving DRAM/NVM/SSD. Check out our [SIGMOD 2021 paper](https://zxjcarrot.github.io/publication/spitfire/spitfire.pdf) for more details.
 This repo contains implementations of the ideas and experiments discussed in paper: 
 - Probabilistic data migration policy.
 - Lock-free clock replacement policy.
@@ -64,7 +64,7 @@ Command line options : ycsb <options>
    -X --admission_set_sz  :  size of the admission queue in HyMem settings in percentage of # buffer pages in NVM
 ```
 ### Hardware Setup for Logging and NVM buffer pool.
-Spitfire implements classic redo/undo logging and it optimizes logging by placing the log buffer and the log files on NVM. Spitfire places the NVM buffer on NVM-backed filesystem using `mmap`. You need to configure the Optane DIMM in `app-direct` mode and mount an `fsdax` mode file system on top of the device. Check out this [tutorial](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/storage_administration_guide/configuring-persistent-memory-for-file-system-direct-access-dax) on how to configure the device and the file system. Once the file system is configured and mounted, create two directories for storing NVM log files and buffer. Then you should pass them to `ycsb` using `-J` and `-P` options. Make sure you have the permission to read and write to the files in these directories.
+Spitfire implements classic redo/undo logging and it optimizes logging by placing the log buffer and the log files on NVM. Spitfire places the NVM buffer on NVM-backed filesystem using `mmap`. Therefore, you need to configure the Optane DIMM in `app-direct` mode and mount an `fsdax` mode file system on top of the device. Check out this [tutorial](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/storage_administration_guide/configuring-persistent-memory-for-file-system-direct-access-dax) on how to configure the device and the file system. Once the file system is configured and mounted, create two directories for storing NVM log files and buffer. Then you should pass them to the `ycsb` program using `-J` and `-P` options. Make sure you have the permission to read and write to the files in these directories.
 ### Buffer Pool Mode
 The buffer pool can be configured into 4 modes (2 three-tier modes and 2 two-tier modes) using `-B` or `--bp_mode` options.
 #### DRAM-NVM-SSD mode
