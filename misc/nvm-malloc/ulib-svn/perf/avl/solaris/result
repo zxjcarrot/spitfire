@@ -1,0 +1,3 @@
+Inserting 1M elems elapsed: 0.960035
+Searching 10M elems elapsed: 1.069714
+Deleting 1M elems elapsed: 0.183905
