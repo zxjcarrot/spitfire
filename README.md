@@ -110,7 +110,7 @@ Spitfire codebase includes two HYMEM optimizations:
 * Fine-grained Page Loading
 * Mini Page
 
-For the first optimization, the loading granularity is defined in `include/config.h`. By default, the loading granularity is 16384 which a full page. You can change this number and recompile to enable this optimization.
+For the first optimization, the loading granularity is defined in `include/config.h`. By default, the loading granularity is 16384 which is a full page. You can change this number and recompile to enable this optimization.
 
 For the Mini Page optimization, you can use the `-M` knob.
 ## Caveats
