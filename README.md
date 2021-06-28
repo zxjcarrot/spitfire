@@ -9,6 +9,17 @@ This repo contains implementations of the ideas and experiments discussed in pap
 - YCSB/TPCC benchmark.
 - ...
 
+If you use this work, please cite our paper as follows
+```
+@inproceedings{zhou2021spitfire,
+  title={Spitfire: A Three-Tier Buffer Manager for Volatile and Non-Volatile Memory},
+  author={Zhou, Xinjing and Arulraj, Joy and Pavlo, Andrew and Cohen, David},
+  booktitle={Proceedings of the 2021 International Conference on Management of Data},
+  pages={2195--2207},
+  year={2021}
+}
+```
+
 ## Building
 
 ### Dependencies
