@@ -1,6 +1,6 @@
 # Spitfire: A Three-Tier Buffer Manager for Volatile and Non-Volatile Memory
 
-A multi-threaded buffer manager built for multi-tier storage hierarchy involving DRAM/NVM/SSD. Check out our [SIGMOD 2021 paper](https://zxjcarrot.github.io/publication/spitfire/spitfire.pdf) for more details.
+A multi-threaded buffer manager built for multi-tier storage hierarchy involving DRAM/NVM/SSD. Check out our [SIGMOD 2021 paper](https://dl.acm.org/doi/10.1145/3448016.3452819) for more details.
 This repo contains implementations of the ideas and experiments discussed in paper: 
 - Probabilistic data migration policy.
 - Lock-free clock replacement policy.
