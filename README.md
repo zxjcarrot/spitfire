@@ -38,7 +38,7 @@ make -j 16 ycsb
 ```
 This generates a `ycsb` exectuable in build directory.
 
-## Playing with Spiftire
+## Playing with Spitfire
 
 Command line options available for the `ycsb` benchmark are as follows:
 ```bash
