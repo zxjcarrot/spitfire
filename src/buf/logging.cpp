@@ -420,8 +420,9 @@ void LogManager::PageCleaningProcess(LogManager *mgr) {
                 lsn_t flush_lsn;
                 do {
                     flush_lsn = std::min((size_t)(persisted_lsn + mgr->log_buffer_size / factor), prev_checkpoint_lsn + flush_lsn_amount);
-                    flushed = mgr->FlushDirtyPages(flush_lsn);;
+                    flushed += mgr->FlushDirtyPages(flush_lsn);;
                     factor /= 2;
+                    factor = std::max((size_t)1, factor);
                 } while(flushed < 10);
                 prev_checkpoint_lsn = flush_lsn;
             }
@@ -654,7 +655,6 @@ LogManager::PersistLogBufferAsync(char *log_buffer, size_t log_buffer_size, size
     char *buf = GetCurrentLogFileBackend()->AllocatePersistentBufferAtTheEnd(new_log_buffer_cap);
     size_t offset = GetCurrentLogFileBackend()->NextWritingPosition() - sizeof(MainRecord);
     persisted_lsn += log_buffer_size;
-    assert(buf);
     //assert(current_main_rec.start_lsn + offset == persisted_lsn.load());
     return std::make_pair(current_main_rec.start_lsn + offset, buf);
     // Notify the page cleaner that a log buffer is persisted.
@@ -805,6 +805,7 @@ char *ConcurrentLogBufferManager::ClaimSpace(size_t sz, lsn_t &claimed_lsn) {
 
             log_buffer_start_lsn = p.first;
             buf = p.second;
+            assert(buf);
             // Clear the filled_bytes counter.
             filled_bytes.store(0);
             // Restart the log buffer space allocation using one atomic store.
